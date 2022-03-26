@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.anvisys.nestinguard.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -41,8 +41,10 @@
             android:padding="10dp"
             android:hint="Enter Code"
             android:textSize="20sp"
+            android:gravity="center"
             android:layout_marginLeft="10dp"
             android:inputType="number"
+            android:background="@drawable/edittext_bg"
            />
 
         <TextView

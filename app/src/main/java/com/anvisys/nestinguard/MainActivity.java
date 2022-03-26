@@ -1,4 +1,4 @@
-package com.example.nestinguard;
+package com.anvisys.nestinguard;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -25,11 +25,13 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.nestinguard.Common.ApplicationConstants;
-import com.example.nestinguard.Common.Session;
-import com.example.nestinguard.Common.Society;
-import com.example.nestinguard.Common.Utility;
-import com.example.nestinguard.Common.Visitor;
+import com.anvisys.nestinguard.Common.EmployActivity;
+import com.anvisys.nestinguard.Common.Session;
+import com.anvisys.nestinguard.Common.ApplicationConstants;
+import com.anvisys.nestinguard.Common.Society;
+import com.anvisys.nestinguard.Common.Utility;
+import com.anvisys.nestinguard.Common.Visitor;
+//import com.example.nestinguard.R;
 
 import org.json.JSONObject;
 
@@ -253,6 +255,11 @@ public class MainActivity extends AppCompatActivity {
 
             Intent profileIntent = new Intent(MainActivity.this, VisitorActivity.class);
             startActivity(profileIntent);
+        }
+        else if(id==R.id.action_employ){
+            Intent employIntent=new Intent(MainActivity.this, EmployActivity.class);
+            startActivity(employIntent);
+
         }
 
         else if (id == R.id.action_logoff) {

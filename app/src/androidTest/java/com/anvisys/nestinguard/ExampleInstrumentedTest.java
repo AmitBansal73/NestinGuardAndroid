@@ -1,4 +1,4 @@
-package com.example.nestinguard;
+package com.anvisys.nestinguard;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

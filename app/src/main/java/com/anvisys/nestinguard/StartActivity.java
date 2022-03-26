@@ -1,4 +1,4 @@
-package com.example.nestinguard;
+package com.anvisys.nestinguard;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,18 +20,16 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.nestinguard.Common.ApplicationConstants;
-import com.example.nestinguard.Common.Profile;
-import com.example.nestinguard.Common.Session;
-import com.example.nestinguard.Common.Society;
-import com.example.nestinguard.Common.Utility;
+import com.anvisys.nestinguard.Common.ApplicationConstants;
+import com.anvisys.nestinguard.Common.Profile;
+import com.anvisys.nestinguard.Common.Session;
+import com.anvisys.nestinguard.Common.Society;
+import com.anvisys.nestinguard.Common.Utility;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 public class StartActivity extends AppCompatActivity {
 
