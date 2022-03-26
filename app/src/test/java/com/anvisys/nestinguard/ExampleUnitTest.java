@@ -1,4 +1,4 @@
-package com.example.nestinguard;
+package com.anvisys.nestinguard;
 
 import org.junit.Test;
 

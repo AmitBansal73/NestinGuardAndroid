@@ -1,7 +1,6 @@
-package com.example.nestinguard;
+package com.anvisys.nestinguard;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -12,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +26,12 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.nestinguard.Common.ApplicationConstants;
-import com.example.nestinguard.Common.Profile;
-import com.example.nestinguard.Common.Session;
-import com.example.nestinguard.Common.Society;
-import com.example.nestinguard.Common.Utility;
-import com.example.nestinguard.Common.Visitor;
+import com.anvisys.nestinguard.Common.Profile;
+import com.anvisys.nestinguard.Common.Session;
+import com.anvisys.nestinguard.Common.ApplicationConstants;
+import com.anvisys.nestinguard.Common.Society;
+import com.anvisys.nestinguard.Common.Utility;
+import com.anvisys.nestinguard.Common.Visitor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +53,8 @@ public class VisitorActivity extends AppCompatActivity {
 
     TextView txtMessage;
     Society society;
+    //for the search bar
+    SearchView mySearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +82,25 @@ public class VisitorActivity extends AppCompatActivity {
         guestListView.setAdapter(adapter);
         GetGuestData();
 
+        //for Search View
+         mySearchView=(SearchView)findViewById(R.id.search_view);
+         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+             @Override
+             public boolean onQueryTextSubmit(String s) {
+//                // adapter.getFilter().filter(query);
+//                 processerch(s);
+                 return false;
+             }
 
+             @Override
+             public boolean onQueryTextChange(String s) {
+                 adapter.getFilter().filter(s.toString());
+
+                 return false;
+             }
+         });
     }
+
 
 
     private void GetGuestData()
@@ -172,7 +192,7 @@ public class VisitorActivity extends AppCompatActivity {
 
     }
 
-    class MyAdapter extends ArrayAdapter<Visitor> {
+    class MyAdapter extends ArrayAdapter<Visitor>  {
         LayoutInflater inflat;
         ViewHolder holder;
 

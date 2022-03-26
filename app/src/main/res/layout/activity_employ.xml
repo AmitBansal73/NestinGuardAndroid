@@ -8,6 +8,8 @@
     android:background="@drawable/bg_inner"
     tools:context="com.anvisys.nestinguard.VisitorActivity">
 
+
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +21,7 @@
 
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-            <!--            for the search  option visible -->
+<!--            for the search  option visible -->
             <SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"

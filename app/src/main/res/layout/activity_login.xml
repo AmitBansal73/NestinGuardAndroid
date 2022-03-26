@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="35dp"
     android:background="@drawable/bg_inner"
-    tools:context=".LoginActivity">
+    tools:context="com.anvisys.nestinguard.LoginActivity">
 
     <ImageView
         android:id="@+id/imageLogo"
