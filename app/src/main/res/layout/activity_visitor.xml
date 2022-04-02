@@ -25,10 +25,8 @@
                 android:layout_width="match_parent"
                 android:iconifiedByDefault="false"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:queryHint="Search here to search "/>
+                android:layout_gravity="center"
+                android:queryHint="Type here  Visitor  name to Search ..... "/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 

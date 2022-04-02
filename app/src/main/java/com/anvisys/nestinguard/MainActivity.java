@@ -25,7 +25,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.anvisys.nestinguard.Common.EmployActivity;
 import com.anvisys.nestinguard.Common.Session;
 import com.anvisys.nestinguard.Common.ApplicationConstants;
 import com.anvisys.nestinguard.Common.Society;
