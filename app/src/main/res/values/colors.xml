@@ -8,4 +8,8 @@
     <color name="colorGrey">#D5D5D5</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
+    <color name="txtcolor">#0F1111</color>
+    <color name="Bright_Blue">#0096FF</color>
+    <color name="Cobalt_Blue">	#0047AB</color>
+    <color name="blue_for_button">#5B38DC</color>
 </resources>

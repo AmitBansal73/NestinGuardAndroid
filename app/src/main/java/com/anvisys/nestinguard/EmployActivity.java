@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.anvisys.nestinguard.Common.Employee;
 import com.anvisys.nestinguard.Common.EmployeeAdapter;
@@ -24,7 +26,7 @@ public class EmployActivity extends AppCompatActivity {
     ListView guestListView;
     Profile myProfile;
 
-   int PageNumber = 1;
+    int PageNumber = 1;
     int Count =10;
     private ListView listView;
 
@@ -35,6 +37,7 @@ public class EmployActivity extends AppCompatActivity {
 //    Society society;
     //for the search bar
     SearchView mySearchView;
+    Button buttonCheckin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +58,16 @@ public class EmployActivity extends AppCompatActivity {
         prgBar=findViewById(R.id.progBar);
         prgBar.setVisibility(View.GONE);
 
+
+
+
         initSearchWidgets();
         setupData();
         setUpList();
-        setUpOnclickListener();
+       // setUpOnclickListener();
+       // checkInButton();
+
+
 //        guestListView = findViewById(R.id.guestListView);
 //        adapter =new EmployActivity.MyAdapter(EmployActivity.this,0,guestList);
 //        guestListView.setAdapter(adapter);
@@ -284,26 +293,28 @@ public class EmployActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String s)
             {
                 currentSearchText = s;
-                ArrayList<Employee> filteredShapes = new ArrayList<Employee>();
+                ArrayList<Employee> filteredEmployee = new ArrayList<Employee>();
 
                 for(Employee employee: employeeList)
                 {
                     if(employee.getName().toLowerCase().contains(s.toLowerCase()))
+
                     {
                         if(selectedFilter.equals("all"))
                         {
-                            filteredShapes.add(employee);
+                            filteredEmployee.add(employee);
                         }
                         else
                         {
                             if(employee.getName().toLowerCase().contains(selectedFilter))
                             {
-                                filteredShapes.add(employee);
+                                filteredEmployee.add(employee);
                             }
                         }
                     }
                 }
-               EmployeeAdapter adapter = new EmployeeAdapter(getApplicationContext(), 0, filteredShapes);
+
+               EmployeeAdapter adapter = new EmployeeAdapter(getApplicationContext(), 0, filteredEmployee);
                 listView.setAdapter(adapter);
 
                 return false;
@@ -320,50 +331,60 @@ public class EmployActivity extends AppCompatActivity {
 
     private void setupData()
     {
-       Employee employee_name0 = new Employee("0", "Payal", R.drawable.profile);
+       Employee employee_name0 = new Employee("0343", "Tanya English", "99999999","hyderabad","Time  12:00pm",false,R.drawable.user_image);
         employeeList.add(employee_name0);
 
-        Employee employee_name1 = new Employee("1","Hariom", R.drawable.profile);
+        Employee employee_name1 = new Employee("1324","Abbie Browning", "99992299","hyderabad"," Time  8:00am",false,R.drawable.user_image);
         employeeList.add(employee_name1);
 
-        Employee employee_name2 = new Employee("2","Raja", R.drawable.profile);
+        Employee employee_name2 = new Employee("2342","Rolando Richmond", "88999999","hyderabad","Time  10:00am",false,R.drawable.user_image);
         employeeList.add(employee_name2);
 
-       Employee employee_name3= new Employee("3","Sanu", R.drawable.profile);
+       Employee employee_name3= new Employee("33432","Jayson French", "99449999","hyderabad","Time  2:00pm",false,R.drawable.user_image);
         employeeList.add(employee_name3);
 
-        Employee employee_name4 = new Employee("4","Sanskriti", R.drawable.profile);
+        Employee employee_name4 = new Employee("2434","Will Kirby", "993391190","hyderabad","Time  12:00pm",false,R.drawable.user_image);
         employeeList.add(employee_name4);
 
-        Employee employee_name5 = new Employee("5", "Retesh", R.drawable.profile);
+        Employee employee_name5 = new Employee("52432", "Javion Keller", "9957575999","hyderabad","Time  11:00am",false,R.drawable.user_image);
         employeeList.add(employee_name5);
 
-        Employee employee_name6 = new Employee("6","Shipra", R.drawable.profile);
+        Employee employee_name6 = new Employee("3322","Javion Keller","6906943580","hyderabad","Time  6:00am",false,R.drawable.user_image);
         employeeList.add(employee_name6);
 
-        Employee employee_name7 = new Employee("7","Anchal noob  ", R.drawable.profile);
+        Employee employee_name7 = new Employee("3222","Zoey Houston",  "4363838475","hyderabad","Time  5:00am",true,R.drawable.user_image);
         employeeList.add(employee_name7);
 
-        Employee employee_name8 = new Employee("8","Jakey", R.drawable.profile);
+        Employee employee_name8 = new Employee("3222","Jakey", "978465959","hyderabad","Time  10:20am",true,R.drawable.user_image);
         employeeList.add(employee_name8);
 
-       Employee employee_name9 = new Employee("9","Mohana", R.drawable.profile);
+       Employee employee_name9 = new Employee("323","Mohana", "60708080100","hyderabad","Time  9:05am",true,R.drawable.user_image);
         employeeList.add(employee_name9);
     }
 
-    private void setUpOnclickListener()
-    {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
-            {
-                Employee selectShape = (Employee) (listView.getItemAtPosition(position));
-                Intent showDetail = new Intent(getApplicationContext(), VisitorActivity.class);
-                showDetail.putExtra("id",selectShape.getId());
-                startActivity(showDetail);
-            }
-        });
-
-    }
+//    private void setUpOnclickListener()
+//    {
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
+//            {
+//                Employee selectShape = (Employee) (listView.getItemAtPosition(position));
+//                Intent showDetail = new Intent(getApplicationContext(), VisitorActivity.class);
+//                showDetail.putExtra("id",selectShape.getId());
+//                startActivity(showDetail);
+//            }
+//        });
+//
+//    }
+//    private void  checkInButton() {
+//        buttonCheckin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast toast = Toast.makeText(getApplicationContext(), "Employee had chek in ", Toast.LENGTH_SHORT);
+//            }
+//        });
+//
+//
+//    }
 
 }

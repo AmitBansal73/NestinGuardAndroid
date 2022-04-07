@@ -52,22 +52,21 @@
                 android:textStyle="bold|italic"
                 android:textColor="@color/colorBlack"
                 android:drawableLeft="@drawable/ic_person_24dp"
+                android:drawablePadding="8dp"
                 />
+
             <TextView
                 android:id="@+id/txtStatus"
-                android:layout_width="0dp"
-                android:layout_weight="1.5"
-                android:layout_height="20dp"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="3dp"
-                android:padding="2dp"
-                android:text="Status"
-                android:layout_marginRight="40dp"
+                android:layout_weight="1"
                 android:background="@drawable/background_green"
-                android:textColor="@color/colorWhite"
-                android:textAlignment="center"
                 android:gravity="center"
-                android:textSize="14sp"
-                />
+                android:text="Status"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -87,6 +86,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
                 android:drawableLeft="@drawable/ic_local_phone_24dp"
+                android:drawablePadding="8dp"
                 />
             <TextView
                 android:id="@+id/txtAddress"
@@ -97,6 +97,8 @@
                 android:text="Address"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
+                android:drawableLeft="@drawable/ic_access_time_24"
+                android:drawablePadding="8dp"
                 />
 
         </LinearLayout>
@@ -127,8 +129,9 @@
                 android:layout_marginTop="5dp"
                 android:text="ActualInTime"
                 android:textColor="@color/colorBlack"
+                android:drawablePadding="8dp"
                 android:textSize="14sp"
-                />
+                android:drawableLeft="@drawable/ic_access_time_24" />
         </LinearLayout>
     </LinearLayout>
 

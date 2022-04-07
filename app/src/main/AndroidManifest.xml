@@ -16,13 +16,19 @@
         android:usesCleartextTraffic="true" >
         <activity
             android:name=".EmployActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".VisitorActivity" />
+        <activity android:name=".VisitorActivity"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
         <activity
             android:name=".StartActivity"
             android:exported="true" >
