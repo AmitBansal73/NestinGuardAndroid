@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.anvisys.nestinguard.MainActivity">
 
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,9 +16,11 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 >
         </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
@@ -27,7 +30,7 @@
         android:background="@drawable/bg_inner"
         >
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
@@ -45,7 +48,110 @@
             android:layout_marginLeft="10dp"
             android:inputType="number"
             android:background="@drawable/edittext_bg"
+            android:visibility="gone"
            />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:id="@+id/inputcode1"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                android:maxLength="1"
+                android:textStyle="bold"
+                android:background="@drawable/edittext_bg"
+                />
+            <EditText
+                android:id="@+id/inputcode2"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                android:maxLength="1"
+                android:textStyle="bold"
+                android:background="@drawable/edittext_bg"
+                />
+            <EditText
+                android:id="@+id/inputcode3"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                android:maxLength="1"
+                android:textStyle="bold"
+                android:background="@drawable/edittext_bg"
+                />
+            <EditText
+                android:id="@+id/inputcode4"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:background="@drawable/edittext_bg"
+
+                />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="20dp"
+                android:gravity="center">
+            <Button
+                android:id="@+id/verify_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:text="varify"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/background_btn"/>
+                <Button
+                    android:id="@+id/btnCheckIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_btn"
+                    android:text="Check In"
+                    android:padding="10dp"
+                    android:paddingTop="10dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txtValidate"
@@ -55,19 +161,21 @@
             android:textColor="@color/colorBlue"
             android:text="Verify"
             android:layout_marginLeft="20dp"
+            android:visibility="gone"
             />
 
     </LinearLayout>
-    <Button
-        android:id="@+id/btnCheckIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_btn"
-        android:text="Check In"
-        android:layout_margin="20dp"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/btnCheckIn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/background_btn"-->
+<!--        android:text="Check In"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:visibility="gone"-->
+<!--        />-->
+
         <LinearLayout
             android:id="@+id/viewVisitor"
             android:layout_width="match_parent"
@@ -84,6 +192,9 @@
                 android:textStyle="bold"
                 android:text="Visitor Information"
                 android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+
                 />
                     <LinearLayout
                         android:id="@+id/viewVisitorInfo"
@@ -98,14 +209,19 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_person_24dp"
+
                             />
                         <TextView
                             android:id="@+id/txtVisitorMobile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_local_phone_24dp"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -114,21 +230,27 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="16dp"
+                        android:textColor="@color/txtcolor"
                         android:background="@color/colorWhite"
+
                         >
                         <TextView
                             android:id="@+id/txtAddress"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
+                            android:textColor="@color/txtcolor"
+                            android:drawableLeft="@drawable/ic_location_on_24"
                             />
                         <TextView
                             android:id="@+id/txtPurpose"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
+                            android:textColor="@color/txtcolor"
+                            android:drawableLeft="@drawable/ic_flat_24dp"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -137,21 +259,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="16dp"
+                        android:textColor="@color/colorBlack"
                         android:background="@color/colorWhite"
                         >
                         <TextView
                             android:id="@+id/txtStartTime"
                             android:layout_width="0dp"
+                            android:text=" "
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorBlack"
                             />
                         <TextView
                             android:id="@+id/txtEndTime"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorBlack"
                             />
                     </LinearLayout>
                     <View
@@ -167,7 +293,10 @@
                 android:textStyle="bold"
                 android:text="Host Information"
                 android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
                 />
+
                     <LinearLayout
                         android:id="@+id/viewHostInfo"
                         android:layout_width="match_parent"
@@ -181,14 +310,16 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textColor="@color/txtcolor"
+                            android:textSize="18sp"
                             />
                         <TextView
                             android:id="@+id/txtHostMobile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="16sp"
+                            android:textColor="@color/txtcolor"
+                            android:textSize="18sp"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -205,6 +336,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textSize="16sp"
+                            android:textColor="@color/txtcolor"
                             />
                         <TextView
                             android:id="@+id/txtFlatIntercom"
@@ -212,9 +344,12 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textSize="16sp"
+                            android:textColor="@color/txtcolor"
                             />
                     </LinearLayout>
+
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/txtMessage"
@@ -226,6 +361,18 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         />
+        <TextView
+            android:id="@+id/txtMessagechek_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:text="Visitor chek In by Guard Amit "
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            />
     </LinearLayout>
     <ProgressBar
         android:id="@+id/progressBar"
@@ -237,4 +384,5 @@
         android:elevation="10dp"
         android:visibility="gone"
         />
+
 </android.support.design.widget.CoordinatorLayout>

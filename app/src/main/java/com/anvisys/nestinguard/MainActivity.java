@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +27,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.anvisys.nestinguard.Common.EmployActivity;
 import com.anvisys.nestinguard.Common.Session;
 import com.anvisys.nestinguard.Common.ApplicationConstants;
 import com.anvisys.nestinguard.Common.Society;
@@ -38,9 +39,9 @@ import org.json.JSONObject;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-
+    private EditText inputcode1,inputcode2,inputcode3,inputcode4;
     TextView txtValidate,txtVisitorName,txtVisitorMobile,txtAddress,txtPurpose,txtStartTime,txtEndTime,txtHostName,txtHostMobile;
-    TextView txtFlatNumber,txtFlatIntercom,txtMessage;
+    TextView txtFlatNumber,txtFlatIntercom,txtMessage,txtMessagechek;
     EditText txtOTP;
     ProgressBar progressBar;
     Society society;
@@ -48,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     Button btnCheckIn;
     Visitor visitor;
     String OTP;
+    Button VerifyButton;
+    //for Draw navigation
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +67,13 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("Visitor Verification");
         actionBar.show();
         txtValidate = findViewById(R.id.txtValidate);
+        //for otp
+        VerifyButton=findViewById(R.id.verify_btn);
+
         txtOTP = findViewById(R.id.txtOTP);
         society = Session.GetSociety(getApplicationContext());
         viewVisitor = findViewById(R.id.viewVisitor);
-
+        txtMessagechek=findViewById(R.id.txtMessagechek_in);
         txtVisitorName = findViewById(R.id.txtVisitorName);
         txtVisitorMobile = findViewById(R.id.txtVisitorMobile);
         txtAddress = findViewById(R.id.txtAddress);
@@ -81,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
         txtMessage = findViewById(R.id.txtMessage);
         progressBar = findViewById(R.id.progressBar);
+        //for otp
+        inputcode1=findViewById(R.id.inputcode1);
+        inputcode2=findViewById(R.id.inputcode2);
+        inputcode3=findViewById(R.id.inputcode3);
+        inputcode4=findViewById(R.id.inputcode4);
+        setOtpInputs();
         txtValidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,13 +108,29 @@ public class MainActivity extends AppCompatActivity {
                 CheckInVisitor();
             }
         });
+        VerifyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ValidateOTP();
+
+            }
+        });
     }
+
+
+
 
 
    private void ValidateOTP()
     {
-        OTP = txtOTP.getText().toString();
+        txtMessagechek.setVisibility(View.GONE);
+
+        OTP =inputcode1.getText().toString()+
+                inputcode2.getText().toString()+
+                inputcode3.getText().toString()+
+                inputcode4.getText().toString();
         progressBar.setVisibility(View.VISIBLE);
+
 
         String url = ApplicationConstants.APP_SERVER_URL+ "/api/Visitor/Code";
 
@@ -173,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     viewVisitor.setVisibility(View.GONE);
                     txtMessage.setVisibility(View.VISIBLE);
+
                     txtMessage.setText("Server Error!");
                 }
             });
@@ -186,13 +217,15 @@ public class MainActivity extends AppCompatActivity {
             txtMessage.setVisibility(View.VISIBLE);
             txtMessage.setText("Server Error!");
         }
+}
 
-    }
+
 
 
     private void CheckInVisitor(){
 
        progressBar.setVisibility(View.VISIBLE);
+
 
         String url = ApplicationConstants.APP_SERVER_URL+ "/api/Visitor/CheckIn";
 
@@ -214,6 +247,12 @@ public class MainActivity extends AppCompatActivity {
                             viewVisitor.setVisibility(View.GONE);
                             txtMessage.setVisibility(View.GONE);
                             txtOTP.setText("");
+                            txtMessagechek.setVisibility(View.VISIBLE);
+
+
+                            btnCheckIn.setVisibility(View.GONE);
+
+
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "Not able to Check In, contact admin", Toast.LENGTH_LONG);
@@ -229,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(), "Server Error", Toast.LENGTH_LONG);
+
                 }
             });
             RetryPolicy rPolicy = new DefaultRetryPolicy(0,-1,0);
@@ -296,4 +336,65 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //for otp input validation
+    private void  setOtpInputs(){
+
+        inputcode1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    inputcode2.requestFocus();
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        inputcode2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    inputcode3.requestFocus();
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        inputcode3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    inputcode4.requestFocus();
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+}
 }

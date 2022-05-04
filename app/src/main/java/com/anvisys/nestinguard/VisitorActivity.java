@@ -1,6 +1,7 @@
 package com.anvisys.nestinguard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -10,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -55,6 +58,8 @@ public class VisitorActivity extends AppCompatActivity {
     Society society;
     //for the search bar
     SearchView mySearchView;
+    private String selectedFilter = "all";
+    private String currentSearchText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,36 +75,104 @@ public class VisitorActivity extends AppCompatActivity {
         actionBar.show();
 
         society = Session.GetSociety(getApplicationContext());
-
         txtMessage = findViewById(R.id.txtMessage);
-
         prgBar=findViewById(R.id.progBar);
         prgBar.setVisibility(View.GONE);
 
 
-        guestListView = findViewById(R.id.guestListView);
-        adapter =new MyAdapter(VisitorActivity.this,0,guestList);
-        guestListView.setAdapter(adapter);
+//        guestListView = findViewById(R.id.guestListView);
+//        adapter =new MyAdapter(VisitorActivity.this,0,guestList);
+//        guestListView.setAdapter(adapter);
+        //Search View
+
+        initSearchWidgets();
         GetGuestData();
+        setUpList();
+        setUpOnclickListener();
 
         //for Search View
-         mySearchView=(SearchView)findViewById(R.id.search_view);
-         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-             @Override
-             public boolean onQueryTextSubmit(String s) {
-//                // adapter.getFilter().filter(query);
-//                 processerch(s);
-                 return false;
-             }
-
-             @Override
-             public boolean onQueryTextChange(String s) {
-                 adapter.getFilter().filter(s.toString());
-
-                 return false;
-             }
-         });
+        // mySearchView=(SearchView)findViewById(R.id.search_view);
+//         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//             @Override
+//             public boolean onQueryTextSubmit(String s) {
+////                // adapter.getFilter().filter(query);
+//                 //VisitorActivity.this.adapter.getFilter().filter(s);
+////                 processerch(s);
+//                 return false;
+//             }
+//
+//             @Override
+//             public boolean onQueryTextChange(String s) {
+//
+//
+//                // VisitorActivity.this.adapter.getFilter().filter(s);
+//
+//                 //adapter.getFilter().filter(s);
+//                 return true;
+//             }
+//         });
     }
+//for search option
+    private void initSearchWidgets()
+    {
+        mySearchView= (SearchView) findViewById(R.id.search_view);
+
+       mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String query) { return false;}
+
+           @Override
+           public boolean onQueryTextChange(String s ) {
+               currentSearchText= s;
+               ArrayList<Visitor> filteredVisitor = new ArrayList<Visitor>();
+
+               for(Visitor visitor: guestList)
+               {
+                   if(visitor.getVisitorName().toLowerCase().contains(s.toLowerCase()))
+                   {
+                       if(selectedFilter.equals("all"))
+                       {
+                           filteredVisitor.add(visitor);
+                       }
+                       else
+                       {
+                           if(visitor.getVisitorName().toLowerCase().contains(selectedFilter))
+                           {
+                               filteredVisitor.add(visitor);
+                           }
+                       }
+                   }
+               }
+              adapter = new MyAdapter(getApplicationContext(), 0, filteredVisitor);
+               guestListView.setAdapter(adapter);
+
+               return false;
+           }
+       });
+    }
+    private void setUpList()
+    {
+        guestListView= (ListView) findViewById(R.id.guestListView);
+        adapter = new MyAdapter(getApplicationContext(), 0, guestList);
+        guestListView.setAdapter(adapter);
+    }
+
+    private void setUpOnclickListener()
+    {
+        guestListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
+            {
+                Visitor selectShape = (Visitor) (guestListView.getItemAtPosition(position));
+                Intent showDetail = new Intent(getApplicationContext(), VisitorActivity.class);
+                //showDetail.putExtra("id",selectShape.getId());
+              //  startActivity(VisitorActivity);
+            }
+        });
+
+    }
+
+
 
 
 
@@ -192,7 +265,7 @@ public class VisitorActivity extends AppCompatActivity {
 
     }
 
-    class MyAdapter extends ArrayAdapter<Visitor>  {
+   class MyAdapter extends ArrayAdapter<Visitor>  {
         LayoutInflater inflat;
         ViewHolder holder;
 

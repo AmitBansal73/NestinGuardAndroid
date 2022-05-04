@@ -8,6 +8,11 @@
     android:background="@drawable/bg_inner"
     tools:context="com.anvisys.nestinguard.VisitorActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,30 +21,38 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-
             app:popupTheme="@style/AppTheme.PopupOverlay" >
-
-            <!--            for the search  option visible -->
-            <SearchView
-                android:id="@+id/search_view"
-                android:layout_width="match_parent"
-                android:iconifiedByDefault="false"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:queryHint="Search here to search "/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <ListView
-        android:id="@+id/guestListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        >
-    </ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
 
+            >
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:iconifiedByDefault="false"
+                android:background="@drawable/backgroundforsearchview"
+                android:queryHint="Type here to Search ..... " />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/guestListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            >
+        </ListView>
     <TextView
         android:id="@+id/txtMessage"
         android:layout_width="wrap_content"
@@ -60,4 +73,5 @@
         android:elevation="10dp"
         android:visibility="gone"
         />
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
